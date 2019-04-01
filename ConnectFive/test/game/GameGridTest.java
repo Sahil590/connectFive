@@ -38,10 +38,10 @@ class GameGridTest {
 		for(int i = 0; i < rows; i++) {
 			for(int j = 0; j < columns; j++) {
 				testGridSpace2DArrayBlank[i][j] = testSpaceBlank;
-				testGridSpace2DArray[i][j] = testSpaceBlank;
+				testGridSpace2DArray[i][j] = testSpaceX;
 			}
 		}
-		
+		/**
 		//fill the final column with Xs
 		for(int i = 0; i < rows; i++) {
 			testGridSpace2DArray[i][8] = testSpaceX;
@@ -54,7 +54,15 @@ class GameGridTest {
 		testGridSpace2DArray[1][5] = testSpaceX;
 		testGridSpace2DArray[2][6] = testSpaceX;
 		testGridSpace2DArray[3][7] = testSpaceX;
-	
+		
+		for(int i = 0; i < rows; i++) {
+			for(int j = 0; j < columns; j++) {
+				if(testGridSpace2DArray[i][j] != testSpaceX) {
+					testGridSpace2DArray[i][j] = testSpaceBlank;
+				}
+			}
+		}
+		**/
 	}
 
 	/**
@@ -90,7 +98,7 @@ class GameGridTest {
 	 * test that the display all method prints the expected display
 	 */
 	@Test
-	void testDisplayAll() {
+	void testDisplayAllBlanks() {
 		GameGrid testGameGridNew = new GameGrid(testGridSpace2DArrayBlank);
 		
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -104,11 +112,28 @@ class GameGridTest {
 	}
 	
 	/**
+	 * test that the display all method prints the expected display
+	 */
+	@Test
+	void testDisplayAllXs() {
+		GameGrid testGameGridNew = new GameGrid(testGridSpace2DArray);
+		
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		System.setOut(new PrintStream(out));
+		
+		testGameGridNew.displayAll();
+		
+		String expectedOutput = "[X][X][X][X][X][X][X][X][X]\n[X][X][X][X][X][X][X][X][X]\n[X][X][X][X][X][X][X][X][X]\n[X][X][X][X][X][X][X][X][X]\n[X][X][X][X][X][X][X][X][X]\n[X][X][X][X][X][X][X][X][X]\n";
+	
+		assertEquals(expectedOutput, out.toString());
+	}
+	
+	/**
 	 * test that the fillSpace methods fills in new space in the grid as expected and returns true for valid choice
 	 */
 	@Test
 	void testFillSpaceValid() {
-		GameGrid testGameGridNew = new GameGrid(testGridSpace2DArray);
+		GameGrid testGameGridNew = new GameGrid(testGridSpace2DArrayBlank);
 		
 		assertTrue(testGameGridNew.fillSpace(testColumn1, testColour));
 		assertEquals(testColour, testGameGridNew.getGridSystem()[0][0].getColour());
@@ -156,8 +181,10 @@ class GameGridTest {
 	@Test
 	void testHorizintalWinnerTrue() {
 		GameGrid testGameGridNew = new GameGrid(testGridSpace2DArray);
-		testGameGridNew.displayAll();
-		assertTrue(testGameGridNew.checkIfWinnerHorizontal());	
+
+		boolean check = testGameGridNew.checkIfWinnerHorizontal();
+		assertEquals(true, check);
+		assertNotNull(testGameGridNew);
 	}
 	
 	/**

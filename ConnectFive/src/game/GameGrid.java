@@ -88,13 +88,13 @@ public class GameGrid {
 					for(int x = 0; x < this.gridSystem[0].length - 5; x++) {
 						
 						//only do the check if the spaces aren't blank
-						if(gridSystem[y][x].getColour() != Colour.BLANK) {
+						if(this.gridSystem[y][x].getColour() != Colour.BLANK) {
 							//System.out.println("new check");
-							Colour check = gridSystem[y][x].getColour();
+							Colour check = this.gridSystem[y][x].getColour();
 							int win = 1;
 							
 							for(int k = x + 1; k <= x + 4; k++) {
-								if(gridSystem[y][k].getColour() == check) {
+								if(this.gridSystem[y][k].getColour() == check) {
 									++win;
 									//System.out.println(check.toString() + "; " + "[" + y + "]" + "[" + k + "]; " + win);
 									if(win == 5) {
@@ -122,14 +122,14 @@ public class GameGrid {
 			
 			for(int x = 0; x < this.gridSystem[0].length - 5; x++) {
 				
-				if(gridSystem[y][x].getColour() != Colour.BLANK) {
+				if(this.gridSystem[y][x].getColour() != Colour.BLANK) {
 					//System.out.println("new check");
-					Colour check = gridSystem[y][x].getColour();
+					Colour check = this.gridSystem[y][x].getColour();
 					int win = 1;
 					int i = 1;
 					
 					for(int k = x + 1; k <= x + 4; k++) {
-						if(gridSystem[y + i][k].getColour() == check) {
+						if(this.gridSystem[y + i][k].getColour() == check) {
 							win++;
 							//System.out.println(check.toString() + "; " + "[" + (y + i) + "]" + "[" + k + "]; " + win);
 							if(win == 5) {
@@ -160,13 +160,13 @@ public class GameGrid {
 					for(int x = 0; x < this.gridSystem[0].length - 1; x++) {
 						
 						//only do the check if the spaces aren't blank
-						if(gridSystem[y][x].getColour() != Colour.BLANK) {
+						if(this.gridSystem[y][x].getColour() != Colour.BLANK) {
 							//System.out.println("new check");
-							Colour check = gridSystem[y][x].getColour();
+							Colour check = this.gridSystem[y][x].getColour();
 							int win = 1;
 							
 							for(int k = y + 1; k <= y + 4; k++) {
-								if(gridSystem[k][x].getColour() == check) {
+								if(this.gridSystem[k][x].getColour() == check) {
 									++win;
 									//System.out.println(check.toString() + "; " + "[" + k + "]" + "[" + x + "]; " + win);
 									if(win == 5) {
